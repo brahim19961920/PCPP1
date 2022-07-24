@@ -14,15 +14,9 @@ def main(xml_file="nyse.xml"):
     print(180 * "-")
 
     for quote in root.findall("quote"):
-        line = quote.text.ljust(50)
-
-        line += quote.attrib["last"].ljust(40)
-        line += quote.attrib["change"].ljust(40)
-        line += quote.attrib["min"].ljust(40)
-        line += quote.attrib["max"].ljust(40)
-
-        print(line)
-        line = ""
+        print(
+            f'{quote.text.ljust(50)}{quote.attrib["last"].ljust(40)}{quote.attrib["change"].ljust(40)}{quote.attrib["min"].ljust(40)}{quote.attrib["max"].ljust(40)}'
+        )
 
     print()
 
