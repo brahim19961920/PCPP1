@@ -1,4 +1,4 @@
-from optparse import Values
+#!/usr/bin/env python
 import xml.etree.ElementTree
 
 
