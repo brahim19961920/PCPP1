@@ -15,7 +15,6 @@ def main(xml_file="nyse.xml"):
 
     for quote in root.findall("quote"):
         line = quote.text.ljust(50)
-        quote.attrib = quote.attrib
 
         line += quote.attrib["last"].ljust(40)
         line += quote.attrib["change"].ljust(40)
