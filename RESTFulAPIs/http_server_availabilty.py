@@ -16,7 +16,7 @@ def main():
     except socket.timeout:
         print("Timeout reached while establishing a connection with the server")
     except:
-        print(f"Can not esstablish a connection with {args.server}")
+        print(f"Can not establish a connection with {args.server}")
 
 
 def is_valid_port(port):
