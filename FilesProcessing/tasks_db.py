@@ -4,11 +4,32 @@ import sqlite3
 
 
 def main():
+
     db = ToDoDB()
-    db.add_task()
-    db.change_priority()
-    db.delete_task()
-    db.show_tasks()
+    print("Welcome to the program.", end="")
+    while True:
+        choice = input(
+            """
+        Select an option:
+            1. Show Tasks 
+            2. Add Task 
+            3. Change Priority 
+            4. Delete Task
+            5. Exit\n"""
+        )
+        # compatible with Py 3.10 and higer versions
+        match choice:
+            case "1":
+                db.show_tasks()
+            case "2":
+                db.add_task()
+            case "3":
+                db.change_priority()
+            case "4":
+                db.delete_task()
+            case _:
+                print("Exit the program. Bye!")
+                exit(0)
 
 
 class ToDoDB:
@@ -38,7 +59,7 @@ class ToDoDB:
 
         priority = int(input("Enter priority: "))
         if priority < 1:
-            print("Skipping, cannot add a task with a priority less than 1.")
+            print("Skipping, cannot add a task with a priority less than 1!")
             return
 
         self.c.execute("INSERT INTO tasks (name, priority) VALUES (?,?)", (name, priority))
@@ -56,16 +77,18 @@ class ToDoDB:
 
     def change_priority(self):
         task_id = input("Enter the id of the task: ")
-        new_priority = input("Enter the new_priority")
+        new_priority = input("Enter the new_priority: ")
         if int(new_priority) < 1:
             print("Skipping, cannot update a task with a priority less than 1.")
             return
 
         self.c.execute(f"UPDATE tasks SET priority = {str(new_priority)} where id = {str(task_id)};")
+        self.conn.commit()
 
     def delete_task(self):
         task_id = input("Enter the id of the task to delete: ")
         self.c.execute(f"DELETE FROM tasks where id = {str(task_id)};")
+        self.conn.commit()
 
 
 if __name__ == "__main__":
