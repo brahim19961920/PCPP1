@@ -6,6 +6,8 @@ import sqlite3
 def main():
     db = ToDoDB()
     db.add_task()
+    db.change_priority()
+    db.delete_task()
     db.show_tasks()
 
 
@@ -51,6 +53,19 @@ class ToDoDB:
         print("Showing all taks in the DB:")
         for task in self.c.execute("SELECT * from tasks"):
             print(task)
+
+    def change_priority(self):
+        task_id = input("Enter the id of the task: ")
+        new_priority = input("Enter the new_priority")
+        if int(new_priority) < 1:
+            print("Skipping, cannot update a task with a priority less than 1.")
+            return
+
+        self.c.execute(f"UPDATE tasks SET priority = {str(new_priority)} where id = {str(task_id)};")
+
+    def delete_task(self):
+        task_id = input("Enter the id of the task to delete: ")
+        self.c.execute(f"DELETE FROM tasks where id = {str(task_id)};")
 
 
 if __name__ == "__main__":
