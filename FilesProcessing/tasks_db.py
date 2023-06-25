@@ -4,7 +4,6 @@ import sqlite3
 
 
 def main():
-
     db = ToDoDB()
     print("Welcome to the program.", end="")
     while True:
@@ -49,12 +48,12 @@ class ToDoDB:
 
     def add_task(self):
         name = input("Enter task name: ")
-        if self.find_task(name):
-            print(f'Skipping, "{name}" task already exists')
-            return
-
         if not name:
             print("Skipping, cannot add an empty task.")
+            return
+
+        if self.find_task(name):
+            print(f'Skipping, "{name}" task already exists')
             return
 
         priority = int(input("Enter priority: "))
@@ -66,9 +65,9 @@ class ToDoDB:
         self.conn.commit()
         print("Task added successfully")
 
-    def find_task(self, test):
-        records = self.c.execute(f"SELECT id, name, priority from tasks where name ='{test}'").fetchall()
-        return records if records else None
+    def find_task(self, task_name):
+        records = self.c.execute(f"SELECT id, name, priority from tasks where name ='{task_name}'").fetchall()
+        return records
 
     def show_tasks(self):
         print("Showing all taks in the DB:")
