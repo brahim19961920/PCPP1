@@ -22,7 +22,7 @@ class ForecastXmlParser:
     def parse(self):
         for element in self.root:
             print(
-                f"{element[0].text} {element[1].text} Celsius, {str(self.temperature_converter.convert_celsius_to_fahrenheit(float(element[1].text)))} Fahrenheit"
+                f"{element[0].text} {element[1].text} Celsius, {self.temperature_converter.convert_celsius_to_fahrenheit(float(element[1].text))} Fahrenheit"
             )
 
 
