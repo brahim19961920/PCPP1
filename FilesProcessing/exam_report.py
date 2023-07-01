@@ -20,19 +20,20 @@ def main():
                     "Worst Score": 100,
                 }
 
-            if element["Candidate ID"] not in new_dict[element["Exam Name"]]["Candidates"]:
-                new_dict[element["Exam Name"]]["Candidates"].append(element["Candidate ID"])
+            exam_name = element["Exam Name"]
+            if element["Candidate ID"] not in new_dict[exam_name]["Candidates"]:
+                new_dict[exam_name]["Candidates"].append(element["Candidate ID"])
 
-            if int(element["Score"]) > int(new_dict[element["Exam Name"]]["Best Score"]):
-                new_dict[element["Exam Name"]]["Best Score"] = element["Score"]
+            if int(element["Score"]) > int(new_dict[exam_name]["Best Score"]):
+                new_dict[exam_name]["Best Score"] = element["Score"]
 
-            if int(element["Score"]) < int(new_dict[element["Exam Name"]]["Worst Score"]):
-                new_dict[element["Exam Name"]]["Worst Score"] = element["Score"]
+            if int(element["Score"]) < int(new_dict[exam_name]["Worst Score"]):
+                new_dict[exam_name]["Worst Score"] = element["Score"]
 
             if element["Grade"] == "Fail":
-                new_dict[element["Exam Name"]]["Number of Failed Exams"] += 1
+                new_dict[exam_name]["Number of Failed Exams"] += 1
             else:
-                new_dict[element["Exam Name"]]["Number of Passed Exams"] += 1
+                new_dict[exam_name]["Number of Passed Exams"] += 1
 
         with open("exams_report.csv", "w", newline="") as new_file:
             fields = [
