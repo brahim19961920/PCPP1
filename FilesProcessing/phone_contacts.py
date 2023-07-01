@@ -38,7 +38,7 @@ class Phone:
         phrase = input("Search contacts: ")
         result = list(
             filter(
-                lambda phone: True if phrase in repr(phone) else False,
+                lambda phone: phrase in repr(phone),
                 self.contacts,
             )
         )
