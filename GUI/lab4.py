@@ -20,9 +20,7 @@ class TrafficLights(tk.Tk):
         self.b2.pack()
 
     def add_lights(self):
-        if self.phase_number == 4:
-            self.phase_number = 0
-
+        self.phase_number %= 4
         self.canvas.create_arc(
             20,
             20,
@@ -56,7 +54,6 @@ class TrafficLights(tk.Tk):
             width=5,
             fill="green" if self.phases[self.phase_number][2] else "grey",
         )
-
         self.phase_number += 1
 
 
