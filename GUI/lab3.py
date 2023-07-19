@@ -1,3 +1,7 @@
+"""
+Clicker application
+"""
+
 from random import randint
 import tkinter as tk
 from tkinter.messagebox import showinfo
@@ -13,13 +17,12 @@ class Clicker(tk.Tk):
         self.timer_value = 0
 
         for i in range(25):
-
             while str(button_number) in self.buttons_numbers:
                 button_number = randint(0, 1000)
 
             self.buttons_numbers.append(str(button_number))
             new_button = tk.Button(self, text=str(button_number), width=10, height=2)
-            new_button.bind("<Button -1 >", self.test)
+            new_button.bind("<Button -1 >", self.click)
             new_button.grid(row=len(self.buttons_list) // 5, column=len(self.buttons_list) % 5)
             self.buttons_list.append(new_button)
 
@@ -28,10 +31,7 @@ class Clicker(tk.Tk):
         self.buttons_numbers.sort(key=lambda x: int(x))
         self.id = self.timer_label.after(1000, self.increase_time_value)
 
-        self.mainloop()
-
-    def test(self, event=None):
-
+    def click(self, event=None):
         if len(self.buttons_numbers) > 1:
 
             if event.widget["text"] == str(self.buttons_numbers[0]):
