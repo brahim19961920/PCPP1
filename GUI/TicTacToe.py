@@ -25,8 +25,22 @@ class TicTacToe(tk.Tk):
 
         self.add_buttons()
 
-    def add_letter(self, button, text, color):
-        button.configure(text=text, fg=color)
+    def add_buttons(self):
+        for i in range(9):
+            button = tk.Button(
+                self,
+                text="" if i != 4 else "X",
+                fg="red",
+                font=("Sans", 9, "bold"),
+                width=10,
+                height=5,
+                padx=2,
+                pady=2,
+                justify="center",
+            )
+            button.grid(row=i // 3, column=i % 3)
+            button.bind("<Button - 1>", self.click)
+            self.buttons.append(button)
 
     def click(self, event=None):
         if self.user_buttons in self.valid_combinaisons:
@@ -59,25 +73,11 @@ class TicTacToe(tk.Tk):
             messagebox.showinfo("Info", "You lost the game")
             return
 
-    def add_buttons(self):
-        for i in range(9):
-            button = tk.Button(
-                self,
-                text="" if i != 4 else "X",
-                fg="red",
-                font=("Sans", 9, "bold"),
-                width=10,
-                height=5,
-                padx=2,
-                pady=2,
-                justify="center",
-            )
-            button.grid(row=i // 3, column=i % 3)
-            button.bind("<Button - 1>", self.click)
-            self.buttons.append(button)
-            # self.buttons[button] = {"clicked": False if i != 4 else True}
+    def add_letter(self, button, text, color):
+        button.configure(text=text, fg=color)
 
 
-t = TicTacToe()
-t.mainloop()
-print(t.user_buttons, t.computer_buttons)
+if __name__ == "__main__":
+    t = TicTacToe()
+    t.mainloop()
+    print(t.user_buttons, t.computer_buttons)
