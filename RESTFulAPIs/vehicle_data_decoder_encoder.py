@@ -7,7 +7,7 @@ def main():
         """What can I do for you?\n1 - Produce a JSON string describing a vehicle\n2 - Decode a JSON string into vehicle data\n""",
     )
 
-    if not user_input.isdigit() or int(user_input) not in [1, 2]:
+    if not user_input.isdigit() and int(user_input) not in [1, 2]:
         print(f"Invalid choice {user_input}")
         exit(-1)
 
