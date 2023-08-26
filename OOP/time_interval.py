@@ -24,9 +24,9 @@ class TimeInterval:
             if key not in ["hours", "minutes", "seconds"]:
                 raise AssertionError(f"Invalid keyword parameter {key}")
 
-        self.hours = kwargs["hours"] if "hours" in kwargs else 0
-        self.minutes = kwargs["minutes"] if "minutes" in kwargs else 0
-        self.seconds = kwargs["seconds"] if "seconds" in kwargs else 0
+        self.hours = kwargs.get("hours", 0)
+        self.minutes = kwargs.get("minutes", 0)
+        self.seconds = kwargs.get("seconds", 0)
 
     def get_time_in_seconds(self):
         return self.seconds + 60 * self.minutes + 3600 * self.hours

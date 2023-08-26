@@ -8,7 +8,6 @@ def main():
 
 
 class Apples:
-
     max_number = 1000
     max_weight = 300
 
