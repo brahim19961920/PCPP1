@@ -16,7 +16,7 @@ def main():
             4. Delete Task
             5. Exit\n"""
         )
-        # compatible with Py 3.10 and higer versions
+        # compatible with Py 3.10 and higher versions
         match choice:
             case "1":
                 db.show_tasks()
